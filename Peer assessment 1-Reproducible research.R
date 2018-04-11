@@ -5,6 +5,7 @@ head(dt)
 tail(dt)
 missing_dt <- dt[is.na(dt$steps),]
 dim(missing_dt)
+library(ggplot2)
 
 
 #1.Code for reading in the dataset and/or processing the data
@@ -49,8 +50,9 @@ new_dt2 <- rbind(weekday_dt, weekend_dt)
 
 #9. All of the R code needed to reproduce the results (numbers, plots, etc.) in the report
 mean_number_steps <- aggregate(steps~ interval+weekday, new_dt2, mean)
-intbydaytype <- qplot(interval, steps, data = mean_number_steps, facets = weekday~.)
-g + geom_line(size = 1) + ylab("Mean steps") + ggtitle("Average number of steps taken, \n averaged across all weekday days or weekend days ")
+g <- qplot(interval, steps, data = mean_number_steps, facets = weekday~.)
+g + geom_line(size = .2) + ylab("Mean steps") + ggtitle("Average number of steps taken, Weekdays and weekends ")
+
 
 
 
